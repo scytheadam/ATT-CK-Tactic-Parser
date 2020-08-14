@@ -34,7 +34,7 @@ if __name__ == '__main__':
     try:
         with open(args.jsonfile) as f:
             custom_layer = json.load(f)
-    except (FileNotFoundError, IsADirectoryError):
+    except (FileNotFoundError, IsADirectoryError, OSError):
         try:
             custom_layer = requests.get(args.jsonfile).json()
         except requests.exceptions.MissingSchema as e:
