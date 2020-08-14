@@ -48,7 +48,7 @@ Example Usage
 -----
 
 ```
-(venv) $ python3 attack_json_to_bullets.py --jsonfile https://raw.githubusercontent.com/scythe-io/community-threats/93f4e07c6792499153be2702f4f8ea23c3666cb9/Orangeworm/orangeworm_layer.json
+(venv) $ python attack_json_to_bullets.py --jsonfile https://raw.githubusercontent.com/scythe-io/community-threats/93f4e07c6792499153be2702f4f8ea23c3666cb9/Orangeworm/orangeworm_layer.json
 Running...
 
 
