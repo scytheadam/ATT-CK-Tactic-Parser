@@ -2,7 +2,6 @@ import argparse
 import json
 import requests
 import stix2
-from os import path
 
 
 def get_data_from_branch(domain, branch="master"):
@@ -38,7 +37,17 @@ if __name__ == '__main__':
         try:
             custom_layer = requests.get(args.jsonfile).json()
         except requests.exceptions.MissingSchema as e:
-            print("Error: could not find '{}' local/URL!".format(args.jsonfile))
+            print(
+                "Error: could not find '{}' local/URL!".format(args.jsonfile)
+            )
+            print(e)
+            print("\n ...Exiting.\n")
+            exit()
+        except ValueError as e:
+            # Catch JSONDecodeError too ...
+            print(
+                "Error: bad JSON via '{}' URL!".format(args.jsonfile)
+            )
             print(e)
             print("\n ...Exiting.\n")
             exit()
