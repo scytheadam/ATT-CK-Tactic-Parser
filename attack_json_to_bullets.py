@@ -7,8 +7,8 @@ from os import path
 
 def get_data_from_branch(domain, branch="master"):
     dest = "https://raw.githubusercontent.com/" \
-        "mitre/cti/%s/%s/%s" \
-        ".json" % (branch, domain, domain)
+        "mitre/cti/{}/{}/{}" \
+        ".json".format(branch, domain, domain)
     stix_json = requests.get(dest).json()
     return stix2.MemoryStore(stix_data=stix_json["objects"])
 
@@ -31,15 +31,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
     # Load custom layer JSON
     # First, try for a local file
-    if path.exists(args.jsonfile) and path.isfile(args.jsonfile):
+    try:
         with open(args.jsonfile) as f:
             custom_layer = json.load(f)
-    # If not a local file, try URL
-    else:
+    except (FileNotFoundError, IsADirectoryError, OSError):
         try:
             custom_layer = requests.get(args.jsonfile).json()
         except requests.exceptions.MissingSchema as e:
-            print("Error: could not find '%s' local/URL!" % args.jsonfile)
+            print("Error: could not find '{}' local/URL!".format(args.jsonfile))
             print(e)
             print("\n ...Exiting.\n")
             exit()
@@ -70,9 +69,9 @@ if __name__ == '__main__':
     # End FOR
     # Present Data ...
     for tactic in data:
-        print("\n%s" % tactic.title())
+        print("\n{}".format(tactic.title()))
         for technique in data[tactic]:
-            print("%s - %s" % (technique[0], technique[1]))
+            print("{} - {}".format(technique[0], technique[1]))
         # End technique FOR
     # End tactic FOR
     # Done!
