@@ -17,6 +17,8 @@ Initial Setup
 
 #### On Windows
 
+(NOTE: the ``setup_parser.bat`` and following examples assume a Python is located at ``C:\Python38\``. You may need to modify the script/commands to match the location of Python on your endpoint, found via > ``where python``.)
+
 Simply double click ``setup_parser.bat`` and run using,
 
 (venv) > ``python attack_json_to_bullets.py --jsonfile ... ``
