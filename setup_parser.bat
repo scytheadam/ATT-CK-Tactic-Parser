@@ -1,8 +1,7 @@
 @echo off
 rem See if python is already in the path
-rem set pypath=`where python`
+set pypath=`where python`
 
-@echo off
 if not defined pypath (
 	rem pypath not found. Check in the registry
 	for /f "tokens=3" %%a in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Python.exe"  /ve ^|findstr /ri "REG_SZ"') do set pypath=%%a
@@ -15,7 +14,7 @@ if not defined pypath (
 
 if not defined pypath (
 	rem still no path. Terminate.
-  @echo can't find python location. Terminating.
+	@echo can't find python location. Terminating.
 	exit /B 1
 )
 
