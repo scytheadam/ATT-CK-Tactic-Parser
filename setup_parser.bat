@@ -2,7 +2,9 @@
 rem See if python is already in the path
 set pypath=`where python`
 
-if not defined pypath (
+if %ERRORLEVEL% neq 0 (
+	rem unset pypath in the case of an error, so checking if it's defined below works. This is an ugly hack.
+	set "pypath="
 	rem pypath not found. Check in the registry
 	for /f "tokens=3" %%a in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Python.exe"  /ve ^|findstr /ri "REG_SZ"') do set pypath=%%a
 )
