@@ -31,11 +31,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     # Load custom layer JSON
     # First, try for a local file
-    if path.exists(args.jsonfile) and path.isfile(args.jsonfile):
+    try:
         with open(args.jsonfile) as f:
             custom_layer = json.load(f)
-    # If not a local file, try URL
-    else:
+    except (FileNotFoundError, IsADirectoryError):
         try:
             custom_layer = requests.get(args.jsonfile).json()
         except requests.exceptions.MissingSchema as e:
