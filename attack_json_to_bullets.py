@@ -85,6 +85,9 @@ if __name__ == '__main__':
     # End FOR
     # Present Data ...
     for tactic in data:
+        # Remove Duplicates
+        data[tactic] = list(dict.fromkeys(data[tactic]))
+        # Print Results
         print("\n{}".format(tactic.title()))
         for technique in data[tactic]:
             print("{} - {}".format(technique[0], technique[1]))

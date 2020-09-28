@@ -90,8 +90,6 @@ T1136 - Create Account
 T1136.001 - Local Account
 T1136.002 - Domain Account
 T1543 - Create or Modify System Process
-T1543 - Create or Modify System Process
-T1543.003 - Windows Service
 T1543.003 - Windows Service
 
 Defense-Evasion
