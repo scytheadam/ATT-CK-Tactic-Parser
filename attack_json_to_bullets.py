@@ -27,6 +27,12 @@ if __name__ == '__main__':
             The target ATT&CK Navigator JSON file. Can be local file or URL.
         ''',
     )
+    parser.add_argument(
+        '--mitigations', action='store_true',
+        help='''
+            Optional ability to print all the mitigations for the TID.
+        ''',
+    )
     args = parser.parse_args()
     # Load custom layer JSON
     # First, try for a local file
@@ -72,7 +78,8 @@ if __name__ == '__main__':
         data[cur_tactic].append(
             (
                 technique['techniqueID'],
-                cur_tec["name"]
+                cur_tec["name"],
+                cur_tec['x_mitre_detection']
             )
         )
     # End FOR
@@ -81,6 +88,8 @@ if __name__ == '__main__':
         print("\n{}".format(tactic.title()))
         for technique in data[tactic]:
             print("{} - {}".format(technique[0], technique[1]))
+            if args.mitigations:
+                print("Mitigations - {}\n".format(technique[2]))
         # End technique FOR
     # End tactic FOR
     # Done!
