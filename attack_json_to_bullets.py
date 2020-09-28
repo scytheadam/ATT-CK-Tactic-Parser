@@ -85,6 +85,7 @@ if __name__ == '__main__':
     # End FOR
     # Present Data ...
     for tactic in data:
+        print("\n{}".format(tactic.title()))
         for technique in data[tactic]:
             print("{} - {}".format(technique[0], technique[1]))
             if args.mitigations:
